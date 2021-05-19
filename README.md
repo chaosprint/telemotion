@@ -4,11 +4,7 @@ Telematic control for music installation with motions.
 
 # Usage
 
-## Preparation
-
-You should have `git` and `node.js` installed.
-
-Run:
+You should have `git` and `node.js` installed. Run:
 ```
 git clone https://github.com/automata/osc-web
 cd osc-web
@@ -19,6 +15,8 @@ node bridge.js
 Then visit: https://telemotion-alpha.web.app
 
 You are ready to go.
+
+# Telematic motion control?
 
 When the overall motion quantity reaches the threshold, a random MIDI signal will be sent to all the MIDI devices connected.
 
@@ -38,6 +36,10 @@ cd telemotion
 npm i
 npm run dev
 ```
+
+# Progress plan
+
+Add control to the options mentioned above on the pages.
 
 # License
 
