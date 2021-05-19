@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html, body {
+        @apply h-full;
+    }
+    main {
+        @apply grid place-items-center h-full;
+    }
+
+    .func {
+        @apply p-3 rounded-full shadow text-white focus:outline-none font-bold;
+    }
+
+    button {
+        focus:outline-none
+    }
+
+    * {
+        font-family: 'Inconsolata', monospace !important;
+    }
+}
