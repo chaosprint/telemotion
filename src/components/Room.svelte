@@ -32,7 +32,7 @@
         var contextBlended = document.getElementById("canvas-blended").getContext('2d');
         let lastImageData;
         var socket;
-        if (target === "remoteVideo") {
+        if (target === "remoteVideo" && window.io !== undefined) {
             socket = window.io('http://127.0.0.1:8081');
             socket.on('connect', function() {
                     // sends to socket.io server the host/port of oscServer
@@ -71,7 +71,9 @@
                 differenceAccuracy(blendedData.data, sourceData.data, lastImageData.data);
                 // difference(blendedData.data, sourceData.data, lastImageData.data);
                 getColumnQoM(sourceData.data, lastImageData.data, qom, 640)
-                socket.emit('message', String(qom))
+                
+                if (socket !== undefined) {socket.emit('message', String(qom))}
+                
                 // draw the result in a canvas
                 contextBlended.putImageData(blendedData, 0, 0);
                 // store the current webcam image
@@ -91,12 +93,10 @@
                         // calculate an average between of the color values of the note area
                         average = Math.round(average / (blendedData.data.length * 0.25));
                         if (average > 10) {
-                            let midi = Math.floor(Math.random()*10+60);
-                            synth.triggerAttackRelease(Tone.Midi(midi).toNote(), "16n");
-                            console.log(`Played midi note ${midi} at Tone.js...`)
                             if (midiOutput) {
                                 midiOutput.forEach(e => {
                                     let midi = Math.floor(Math.random()*10+60);
+                                    synth.triggerAttackRelease(Tone.Midi(midi).toNote(), "16n");
                                     e.send([144, midi, Math.floor(Math.random()*30+60)]);
                                     console.log(`Sent midi note ${midi} to ${e}`)
                                 });
