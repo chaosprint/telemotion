@@ -4,7 +4,7 @@ Telematic control for music installation with motions.
 
 # Usage
 
-You should have `git` and `node.js` installed. Run:
+You should still have `git` and `node.js` installed locally. Run:
 ```
 git clone https://github.com/automata/osc-web
 cd osc-web
